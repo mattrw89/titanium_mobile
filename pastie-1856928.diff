@@ -1,0 +1,48 @@
+diff -crB original/TiUIiPhoneNavigationGroup.h fixed/TiUIiPhoneNavigationGroup.h
+*** original/TiUIiPhoneNavigationGroup.h	2011-05-02 16:51:40.000000000 +0200
+--- fixed/TiUIiPhoneNavigationGroup.h	2011-05-02 16:51:58.000000000 +0200
+***************
+*** 20,25 ****
+--- 22,29 ----
+  - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
+  - (UINavigationController*)controller;
+  
++ - (void)pop;
++ 
+  @end
+  
+  #endif
+diff -crB original/TiUIiPhoneNavigationGroup.m fixed/TiUIiPhoneNavigationGroup.m
+*** original/TiUIiPhoneNavigationGroup.m	2011-05-02 16:51:40.000000000 +0200
+--- fixed/TiUIiPhoneNavigationGroup.m	2011-05-02 16:51:58.000000000 +0200
+***************
+*** 119,124 ****
+--- 121,130 ----
+  	[window autorelease];
+  }
+  
++ - (void)pop {
++ 	[controller popViewControllerAnimated:YES];
++ }
++ 
+  - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+  {
+  	[controller willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+diff -crB original/TiUIiPhoneNavigationGroupProxy.m fixed/TiUIiPhoneNavigationGroupProxy.m
+*** original/TiUIiPhoneNavigationGroupProxy.m	2011-05-02 16:51:40.000000000 +0200
+--- fixed/TiUIiPhoneNavigationGroupProxy.m	2011-05-02 16:51:58.000000000 +0200
+***************
+*** 53,58 ****
+--- 55,66 ----
+  	}
+  }
+  
++ -(void)pop
++ {
++ 	ENSURE_UI_THREAD_0_ARGS;
++ 	[[self view] performSelector:@selector(pop)];
++ }
++ 
+  -(UINavigationController*)controller
+  {
+  	return [(TiUIiPhoneNavigationGroup*)[self view] controller];

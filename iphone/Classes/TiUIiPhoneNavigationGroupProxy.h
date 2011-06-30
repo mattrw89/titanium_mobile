@@ -15,6 +15,8 @@
     id<TiOrientationController> parentOrientationController;
 }
 @property(nonatomic,assign) id<TiOrientationController> parentOrientationController;
+-(void)pop(id)args;
+
 -(UINavigationController*)controller;
 
 @end

@@ -1,0 +1,38 @@
+diff -crB original/TiUIiPhoneNavigationGroupProxy.h fixed/TiUIiPhoneNavigationGroupProxy.h
+*** original/TiUIiPhoneNavigationGroupProxy.h	2011-05-02 19:51:55.000000000 +0200
+--- fixed/TiUIiPhoneNavigationGroupProxy.h	2011-05-02 19:52:29.000000000 +0200
+***************
+*** 13,18 ****
+--- 15,22 ----
+  @private
+  }
+  
++ -(void)pop:(id)args;
++ 
+  -(UINavigationController*)controller;
+  
+  @end
+diff -crB original/TiUIiPhoneNavigationGroupProxy.m fixed/TiUIiPhoneNavigationGroupProxy.m
+*** original/TiUIiPhoneNavigationGroupProxy.m	2011-05-02 19:51:55.000000000 +0200
+--- fixed/TiUIiPhoneNavigationGroupProxy.m	2011-05-02 19:52:29.000000000 +0200
+***************
+*** 53,61 ****
+  	}
+  }
+  
+! -(void)pop
+  {
+! 	ENSURE_UI_THREAD_0_ARGS;
+  	[[self view] performSelector:@selector(pop)];
+  }
+  
+--- 55,64 ----
+  	}
+  }
+  
+! -(void)pop:(id)args
+  {
+! 	//ENSURE_UI_THREAD_0_ARGS;
+! 	ENSURE_UI_THREAD(pop,args);
+  	[[self view] performSelector:@selector(pop)];
+  }

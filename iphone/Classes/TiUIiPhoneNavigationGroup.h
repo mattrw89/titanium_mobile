@@ -21,6 +21,8 @@
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration;
 - (UINavigationController*)controller;
 
+- (void)pop;
+
 @end
 
 #endif

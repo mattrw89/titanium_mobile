@@ -118,6 +118,10 @@
 	
 }
 
+- (void)pop {
+	[controller popViewControllerAnimated:YES];
+}
+
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
 	[controller willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
